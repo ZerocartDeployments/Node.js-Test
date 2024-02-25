@@ -1,4 +1,4 @@
-name: Node.js CI
+name: Node.js CI with PM2
 
 on:
   push:
@@ -22,8 +22,7 @@ jobs:
     - name: Install dependencies
       run: npm install
 
-    - name: Build and start application
+    - name: Start Node.js application with PM2
       run: |
-        npm start &
-        sleep 5  # wait for the server to start
-        curl http://localhost:3000  # replace 3000 with your app's port
+        npm install pm2 -g  # Install PM2 globally
+        pm2 start npm --name "app1" -- start 
